@@ -28,14 +28,15 @@ sales_18_df <- sales_df %>%
 compare_df <- left_join(sales_17_df, sales_18_df)
 
 ggplot(compare_df) +
-  geom_segment(aes(x=main_category, xend=main_category, y=total_item_17, yend=total_item_18), color="grey") +
+  geom_segment(aes(x=main_category, xend=main_category, y=total_item_17, yend=total_item_18), color="black") +
   geom_point(aes(x = main_category, y = total_item_17, color = "2017"), size = 3 ) +
   geom_point(aes(x = main_category, y = total_item_18, color = "2018"), size = 3 ) +
   coord_flip() +
-  scale_color_manual(values = c("brown", "green"),
+  scale_color_manual(values = c("#B970BB", "#70EBAE"),
                      guide = guide_legend(), 
                      name = "Year") + 
-  labs(title = "Items sold in Main Category - 2017 vs 2018",
+  labs(title = "Items sold in Main Category",
+       caption = "Comparision of quantity sold in 2017 vs 2018", 
        x = "Category", 
        y = "Units sold") +
   scale_y_continuous(breaks = seq(0, 160000, 20000)) + 
@@ -45,18 +46,18 @@ ggplot(compare_df) +
 compare_df2 <- compare_df[-7, ] #Delete fresh produce to analyze others
 
 ggplot(compare_df2) +
-  geom_segment(aes(x=main_category, xend=main_category, y=total_item_17, yend=total_item_18), color="grey") +
+  geom_segment(aes(x=main_category, xend=main_category, y=total_item_17, yend=total_item_18), color="black") +
   geom_point(aes(x = main_category, y = total_item_17, color = "2017"), size = 3 ) +
   geom_point(aes(x = main_category, y = total_item_18, color = "2018"), size = 3 ) +
-  scale_color_manual(values = c("brown", "green"),
+  scale_color_manual(values = c("#B970BB", "#70EBAE"),
                      guide = guide_legend(), 
                      name = "Year") + 
   coord_flip() + 
-  labs(title = "Items sold in Main Category* - 2017 vs 2018",
-       caption = "excluding the Fresh Produce category for clearer comparision",
+  labs(title = "Items sold in Main Category*",
+       caption = "*excluding the Fresh Produce category for clearer comparision",
        x = "Category", 
        y = "Units sold") +
-  scale_y_continuous(breaks = seq(0, 16000, 1000)) + 
+  scale_y_continuous(breaks = seq(0, 16000, 2000)) + 
   theme(legend.position = "bottom")
 
 # 2018 sells more pantry, DCE, bag, flower, beverage
@@ -68,9 +69,9 @@ misc <- sales_df %>%
 # Miscellaneous items were balms and candles, have only 9 sales recorded. All sales in 2018 were Siddhalepa balms (Sri Lankan product, relieve body aches), and all sales in 2017 were candles. Sales were mostly made toward the end of the week (Friday & Weekends). Both are considered stress-relieved type of product. 
 
 ------------------------------------------------------------------------------------------
-# Trend in main vs sub category
-# Hypothesis - items with most variety have the most sales - make the most profit
-main_to_sub_df_17 <- sales_df %>%
+  # Trend in main vs sub category
+  # Hypothesis - items with most variety have the most sales - make the most profit
+  main_to_sub_df_17 <- sales_df %>%
   filter(year == 2017) %>%
   group_by(main_category) %>%
   summarise(num_cat = paste(unique(sub_category), collapse = ", ")) %>%
@@ -139,7 +140,6 @@ ggplot(data = hour_18) +
   geom_histogram(aes(x = hour), fill = "#33FFDD") +
   facet_wrap(~main_category)
 
-# Peak buying is within 7am - 7pm, but for Fresh Produce, losing out on peaks from ~8:00 PM - 12:00 AM 
+# Peak buying is still 
 
-  
- 
+
