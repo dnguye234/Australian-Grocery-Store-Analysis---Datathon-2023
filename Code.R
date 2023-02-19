@@ -40,7 +40,7 @@ ggplot(compare_df) +
        y = "Units sold") +
   scale_y_continuous(breaks = seq(0, 160000, 20000)) + 
   theme(legend.position = "bottom")
-# Fresh produce clearly outseel all other categories
+# Fresh produce clearly outsell all other categories
 
 compare_df2 <- compare_df[-7, ] #Delete fresh produce to analyze others
 
